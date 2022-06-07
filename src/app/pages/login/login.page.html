@@ -1,0 +1,48 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar color="secondary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content force-overscroll="false">
+    <ion-grid class="h-full">
+        <ion-row class="h-full ion-justify-content-center content-evenly">
+            <ion-col class="ion-padding-horizontal" size="12" size-md="6" size-lg="5">
+                <div class="ion-text-center">
+                    <img src="assets/img/logo.png" width="90%" height="90%" class="m-auto" />
+                </div>
+                <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+                    <ion-list mode="md">
+                        <ion-item>
+                            <ion-input class="email" type="email" formControlName="email" placeholder="Email">
+                            </ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input class="password" type="password" formControlName="password"
+                                placeholder="Password"></ion-input>
+                        </ion-item>
+                    </ion-list>
+                    <p class="text-xs text-right" (click)="forgotPassword()">Forgot Password?</p>
+
+                    <ion-button type="submit" expand="block" color="secondary" class="ion-margin-top mx-0 my-5">
+                        <ion-spinner color="dark" *ngIf="userQuery.selectLoading() | async; else notLoading">
+                        </ion-spinner>
+                        <ng-template #notLoading>LOGIN</ng-template>
+                    </ion-button>
+                    <p class="text-xs text-center">
+                        You don't have a nomadicways.travel account?
+                        <span class="font-bold" routerLink="/register">Sign up</span>
+                    </p>
+                </form>
+            </ion-col>
+            <ion-col size="12">
+                <div class="flex items-center justify-center">
+                    <span>Powered by</span>
+                    <img src="assets/img/cm24.png" width="50px" />
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

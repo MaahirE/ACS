@@ -1,3 +1,49 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane when="x1" contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-header>
+        <ion-toolbar color="secondary">
+          <ion-grid class="ion-padding-top">
+            <ion-row>
+              <ion-col class="ion-text-center">
+                <img class="rounded-full w-2/3 block m-auto" [src]="userQuery.avatar | async" />
+                <ion-menu-toggle *ngIf="userQuery.isGuest | async; else isIn">
+                  <ion-button class="login" color="warning" routerLink="login">Login
+                  </ion-button>
+                </ion-menu-toggle>
+                <ng-template #isIn>
+                  <h5>{{ userQuery.userName | async }}</h5>
+                </ng-template>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content color="secondary">
+        <ion-menu-toggle *ngIf="(userQuery.isGuest | async) === false">
+          <ion-item *ngFor="let item of menu" [routerLink]="item.path" lines="full" color="secondary" detail>
+            <ion-icon slot="start" icon="person-circle"></ion-icon>
+            <ion-label>{{ item.title }}</ion-label>
+          </ion-item>
+          <div class="btnContainer">
+            <ion-buttons>
+              <ion-button class="shareBtn" (click)="share()">
+                <ion-label>Share App</ion-label>
+                <ion-icon slot="start" name="share-social" color="white"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </div>
+        </ion-menu-toggle>
+      </ion-content>
+      <ion-footer *ngIf="(userQuery.isGuest | async) === false">
+        <ion-toolbar color="secondary">
+          <ion-item lines="none" color="secondary" (click)="logout()">
+            <ion-label>Logout</ion-label>
+            <ion-icon name="log-out-outline" slot="end"></ion-icon>
+          </ion-item>
+        </ion-toolbar>
+      </ion-footer>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>

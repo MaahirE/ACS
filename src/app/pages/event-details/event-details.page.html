@@ -1,0 +1,56 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Event</ion-title>
+        <ion-buttons slot="end">
+
+            <ion-button>
+                <ion-menu-button></ion-menu-button>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-item lines="none">
+            <ion-avatar slot="start">
+                <img [src]="event?.profileImageUrl" />
+            </ion-avatar>
+            <ion-label>
+                <h4>{{event?.title}}</h4>
+                <p>{{event?.location}}</p>
+                <small>{{event?.addressLine1}}</small>
+            </ion-label>
+
+            <div class="h-full inline-block" slot="end">
+                <div class="
+              date
+              font-bold
+              text-center
+              overflow-hidden
+              rounded
+              w-12
+              my-0
+              mx-auto
+            ">
+                    <div class="month bg-primary text-white text-xs">
+                        {{event.startDate | date: 'MMM'}}
+                    </div>
+                    <div class="bg-white">{{event.startDate | date: 'd'}}</div>
+                    <div class="year bg-dark text-white text-xs">
+                        {{event.startDate | date: 'YYYY'}}
+                    </div>
+                </div>
+            </div>
+        </ion-item>
+    </ion-toolbar>
+    <ion-toolbar class="relative w-full ion-no-padding">
+        <ion-img [src]="event?.eventImageUrl" class="banner"></ion-img>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="px-2">
+        <span>{{event?.description}}</span>
+    </div>
+</ion-content>

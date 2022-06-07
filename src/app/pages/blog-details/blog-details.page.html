@@ -1,0 +1,26 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{blog?.title}}</ion-title>
+        <ion-buttons slot="end">
+            <ion-button class="loginButton" *ngIf="userQuery.isGuest | async" (click)="goToLogin()">Login</ion-button>
+            <ion-button *ngIf="userQuery.isUser | async">
+                <ion-menu-button></ion-menu-button>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card class="m-2 mb-0">
+        <app-blog-item [blog]="blog" [color]="'primary'"></app-blog-item>
+    </ion-card>
+    <ng-container *ngIf="blog?.intro">
+        <div class="px-2" [innerHTML]="sanitizer.bypassSecurityTrustHtml(blog.intro)"></div>
+    </ng-container>
+    <ng-container *ngIf="blog?.messageText">
+        <div class="px-2" [innerHTML]="sanitizer.bypassSecurityTrustHtml(blog.messageText)"></div>
+    </ng-container>
+</ion-content>

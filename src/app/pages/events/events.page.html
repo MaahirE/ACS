@@ -1,0 +1,51 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="secondary">
+    <ion-title>Events</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="loginButton" *ngIf="userQuery.isGuest | async" (click)="goToLogin()">Login</ion-button>
+      <ion-button *ngIf="userQuery.isUser | async">
+        <ion-menu-button></ion-menu-button>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="full">
+    <ion-list-header>
+      <ion-label>Coming up!</ion-label>
+    </ion-list-header>
+    <ng-container *ngFor="let event of eventQuery.list | async">
+      <ion-item detail="false" (click)="goTo(event)">
+        <div class="h-full inline-block" slot="start">
+          <div class="
+              date
+              font-bold
+              text-center
+              overflow-hidden
+              rounded
+              w-12
+              my-0
+              mx-auto
+            ">
+            <div class="month bg-secondary text-white text-xs">
+              {{event.startDate | date: 'MMM'}}
+            </div>
+            <div class="bg-white">{{event.startDate | date: 'd'}}</div>
+            <div class="year bg-dark text-white text-xs">
+              {{event.startDate | date: 'YYYY'}}
+            </div>
+          </div>
+        </div>
+        <ion-label>
+          <h2>{{event?.title}}</h2>
+          <p>{{event.location}}</p>
+        </ion-label>
+        <ion-text slot="end">
+          <p class="m-0 text-xs">{{event.startDate | date: 'shortTime'}}</p>
+          <p class="m-0 text-xs">{{event.endDate | date: 'shortTime'}}</p>
+        </ion-text>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>

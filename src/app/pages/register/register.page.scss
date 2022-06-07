@@ -1,0 +1,63 @@
+ion-title {
+    text-align: center;
+}
+
+ion-content {
+    background-color: white;
+}
+
+.logo_img {
+    width: 60%;
+    height: 35vh;
+    object-fit: cover;
+}
+
+ion-button {
+    width: 100%;
+}
+
+.noAcc {
+    font-size: 0.9rem;
+}
+
+.noAcc span {
+    font-weight: 700;
+}
+
+.logo_img,
+.register_btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.all_content,
+p {
+    display: flex;
+    justify-content: center;
+}
+
+.register_form {
+    margin: 0 10px;
+    padding: 20px;
+}
+
+.input_form {
+    border-radius: 20px;
+    border: 2px solid #1EB82D;
+    --placeholder-color: black;
+    padding-left: 10px;
+    color: black;
+    --padding-start: 5px;
+}
+
+::placeholder {
+    color: black;
+}

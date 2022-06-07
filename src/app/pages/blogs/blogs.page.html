@@ -1,0 +1,26 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="toolbar" color="secondary">
+    <ion-buttons slot="start" (click)="showAbout()">
+      <ion-button>About</ion-button>
+    </ion-buttons>
+    <ion-title class="title">Blogs</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="loginButton" *ngIf="userQuery.isGuest | async" (click)="goToLogin()">Login</ion-button>
+      <ion-button *ngIf="userQuery.isUser | async">
+        <ion-menu-button></ion-menu-button>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row *ngFor="let blog of blogQuery.allBlogs | async as blogs">
+      <ion-col>
+        <ion-card class="ion-no-margin">
+          <app-blog-item [blog]="blog" [color]="'primary'"></app-blog-item>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

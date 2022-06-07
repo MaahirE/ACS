@@ -1,0 +1,27 @@
+ion-input {
+    @apply border border-solid rounded-lg my-3;
+    --padding-start: 10px;
+    --background: var(--ion-color-white);
+    --color: var(--ion-color-dark);
+}
+
+.ion-text-center {
+    padding: 10%;
+    background-color: white;
+}
+
+.text-right {
+    color: black;
+}
+
+.flex {
+    color: black;
+}
+
+.email {
+    border-color: #ffffff;
+}
+
+.password {
+    border-color: #ffffff;
+}

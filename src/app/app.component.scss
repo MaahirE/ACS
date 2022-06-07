@@ -1,0 +1,183 @@
+.rounded-full {
+    height: 180px;
+}
+
+.btnContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+.shareBtn {
+    width: 25vh;
+    padding: 2%;
+    text-transform: capitalize;
+    border-radius: 50px;
+    color: white;
+    background-color: rgb(151, 150, 150);
+}
+
+@media screen and (max-width: 1368px) and (orientation: landscape) {
+    .shareBtn {
+        width: 20vh;
+    }
+}
+
+@media screen and (max-width: 1366px) and (orientation: landscape) {
+    .shareBtn {
+        width: 17vh;
+    }
+}
+
+@media screen and (max-width: 1280px) and (orientation: landscape) {
+    .shareBtn {
+        width: 30vh;
+    }
+}
+
+@media screen and (max-width: 1024px) and (orientation: landscape) {
+    .shareBtn {
+        width: 20vh;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .shareBtn {
+        width: 13vh;
+    }
+}
+
+@media screen and (max-width: 1180px) and (orientation: landscape) {
+    .shareBtn {
+        width: 23vh;
+    }
+}
+
+@media screen and (max-width: 926px) and (orientation: landscape) {
+    .shareBtn {
+        width: 40vh;
+    }
+}
+
+@media screen and (max-width: 915px) and (orientation: landscape) {
+    img {
+        height: 40vh;
+        width: 40vh;
+    }
+}
+
+@media screen and (max-width: 912px) {
+    .shareBtn {
+        width: 15vh;
+    }
+}
+
+@media screen and (max-width: 896px) and (orientation: landscape) {
+    img {
+        width: 40vh;
+        height: 40vh;
+    }
+
+    .shareBtn {
+        width: 40vh;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .shareBtn {
+        width: 15vh;
+    }
+}
+
+@media screen and (max-width: 745px) and (orientation: landscape) {
+    img {
+        width: 30vh;
+        height: 30vh;
+    }
+
+    .shareBtn {
+        width: 40vh;
+    }
+}
+
+@media screen and (max-width: 731px) and (orientation: landscape) {
+    .shareBtn {
+        width: 35vh;
+    }
+}
+
+@media screen and (max-width: 720px) and (orientation: landscape) {
+    .shareBtn {
+        width: 28vh;
+    }
+}
+
+@media screen and (max-width: 667px) and (orientation: landscape) {
+    .shareBtn {
+        width: 40vh;
+    }
+}
+
+@media screen and (max-width: 658px) and (orientation: landscape) {
+    img {
+        width: 25vh;
+        height: 25vh;
+    }
+
+    .shareBtn {
+        width: 45vh;
+    }
+}
+
+@media screen and (max-width: 653px) and (orientation: landscape) {
+    h5 {
+        font-size: 16px;
+    }
+
+    .account {
+        font-size: 15px;
+        height: 12vh;
+    }
+
+    .shareBtn {
+        height: 9vh;
+        width: 45vh;
+        font-size: 10px;
+    }
+
+    ion-footer {
+        display: flex;
+        align-items: center;
+        height: 13vh;
+    }
+}
+
+@media screen and (max-width: 568px) and (orientation: landscape) {
+    .shareBtn {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .shareBtn {
+        width: 23vh;
+    }
+}
+
+@media screen and (max-width: 428px) {
+    .shareBtn {
+        width: 20vh;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .shareBtn {
+        width: 25vh;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .shareBtn {
+        width: 22vh;
+    }
+}

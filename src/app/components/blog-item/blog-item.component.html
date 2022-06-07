@@ -1,0 +1,10 @@
+<ion-item lines="none" class="w-full" (click)="goTo(blog)" [color]="color">
+    <ion-avatar slot="start">
+        <ion-img [src]="blog?.publishedByImageUrl"></ion-img>
+    </ion-avatar>
+    <ion-label>
+        <h5>{{ blog?.subject }}</h5>
+        <p>{{ blog?.publishedBy }}</p>
+        <small>{{ blog?.publishText }}</small>
+    </ion-label>
+</ion-item>

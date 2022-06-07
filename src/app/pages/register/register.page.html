@@ -1,0 +1,58 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content force-overscroll="false">
+    <ion-grid class="h-full">
+        <ion-row class="h-full ion-justify-content-center content-evenly">
+            <ion-col class="ion-padding-horizontal" size="12" size-md="6" size-lg="5">
+                <div class="ion-text-center">
+                    <img src="assets/img/logo.png" width="90%" height="90%" class="m-auto" />
+                </div>
+                <form (ngSubmit)="onSubmit()" [formGroup]="signupForm">
+                    <ion-list mode="md">
+                        <ion-item>
+                            <ion-input type="text" formControlName="firstName" placeholder="First Name">
+                            </ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input type="text" formControlName="lastName" placeholder="Last Name">
+                            </ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input type="email" formControlName="email" placeholder="Email">
+                            </ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input type="password" formControlName="password" placeholder="Password"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input type="password" formControlName="password_confirmation"
+                                placeholder="Confirm Password"></ion-input>
+                        </ion-item>
+                    </ion-list>
+
+                    <ion-button color="secondary" type="submit" expand="block" class="ion-margin-top mx-0 my-5">
+                        <ion-spinner color="dark" *ngIf="userQuery.selectLoading() | async; else notLoading">
+                        </ion-spinner>
+                        <ng-template #notLoading>Submit</ng-template>
+                    </ion-button>
+                    <p class="text-xs text-center">
+                        Already have an account?
+                        <span class="font-bold" routerLink="/login" routerDirection="back">Log In</span>
+                    </p>
+                </form>
+            </ion-col>
+            <ion-col size="12">
+                <div class="flex items-center justify-center">
+                    <span>Powered by</span>
+                    <img src="assets/img/cm24.png" width="50px" />
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
