@@ -3,7 +3,7 @@
     <ion-buttons slot="start" (click)="showAbout()">
       <ion-button>About</ion-button>
     </ion-buttons>
-    <ion-title class="title">Blogs</ion-title>
+    <ion-title class="title">Updates</ion-title>
     <ion-buttons slot="end">
       <ion-button class="loginButton" *ngIf="userQuery.isGuest | async" (click)="goToLogin()">Login</ion-button>
       <ion-button *ngIf="userQuery.isUser | async">
@@ -14,6 +14,21 @@
 </ion-header>
 
 <ion-content>
+  <div class="ion-text-center">
+    <img src="assets/img/logo.png" width="90%" height="90%" class="m-auto" />
+  </div>
+  <div class="buttons w-full text-center">
+    <section>
+      <ion-button size="small" (click)="goToV()">To Volunteer</ion-button>
+      <ion-button size="small" color="secondary" (click)="goToTR()">Treatment Resources</ion-button>
+    </section>
+  </div>
+  <div class="update">
+    <h5 class="updates w-full text-center">
+      <span class="latest text-xl">Latest updates</span>
+    </h5>
+  </div>
+
   <ion-grid>
     <ion-row *ngFor="let blog of blogQuery.allBlogs | async as blogs">
       <ion-col>

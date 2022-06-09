@@ -8,6 +8,8 @@ export interface Blog {
     publishedBy: string;
     uniqueId: string;
     publishDate: number;
+    title: string;
+    subjectLink: string;
 }
 
 export function createBlog(params: Partial<Blog>) {

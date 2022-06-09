@@ -44,12 +44,18 @@ export class HttpService {
         const call: HttpOptions = { method, url, headers };
 
         if (method === 'GET' && params) {
-            call.params = params;
+            if (uri === 'wiki') {
+                const options = new HttpParams({ fromObject: params }).toString();
+                call.url = `${url}?${options}`;
+            } else {
+                call.params = params;
+            }
         } else if (params) {
             const options = new HttpParams({ fromObject: params }).toString();
             call.url = `${url}?${options}`;
         }
 
+        console.log(call);
         const { data }: HttpResponse = await Http.request(call);
 
         return data;

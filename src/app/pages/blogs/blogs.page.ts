@@ -28,6 +28,18 @@ export class BlogsPage implements OnInit {
     });
   }
 
+  goToTR(wiki) {
+    this.navCtrl.navigateForward('treatment-resources', {
+      state: { wiki },
+    });
+  }
+
+  goToV(wiki) {
+    this.navCtrl.navigateForward('volunteer', {
+      state: { wiki },
+    });
+  }
+
   goToLogin() {
     this.navCtrl.navigateForward('login')
   }

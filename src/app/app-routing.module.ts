@@ -24,6 +24,20 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'treatment-resources',
+    loadChildren: () =>
+      import('./pages/treatment-resources/treatment-resources.module').then(
+        (m) => m.TreatmentResourcesPageModule
+      ),
+  },
+  {
+    path: 'volunteer',
+    loadChildren: () =>
+      import('./pages/volunteer/volunteer.module').then(
+        (m) => m.VolunteerPageModule
+      ),
+  },
+  {
     path: 'event-details',
     loadChildren: () =>
       import('./pages/event-details/event-details.module').then(
