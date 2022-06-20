@@ -44,6 +44,21 @@ const routes: Routes = [
         (m) => m.EventDetailsPageModule
       ),
   },
+  {
+    path: 'messages',
+    loadChildren: () =>
+      import('./pages/messages/messages.module').then(
+        (m) => m.MessagesPageModule
+      ),
+  },
+  {
+    path: 'new',
+    loadChildren: () => import('./pages/messages/new/new.module').then(m => m.NewPageModule)
+  },
+  {
+    path: 'conversation',
+    loadChildren: () => import('./pages/messages/conversation/conversation.module').then(m => m.ConversationPageModule)
+  }
 
 ];
 

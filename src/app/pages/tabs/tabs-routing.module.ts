@@ -26,6 +26,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('../events/events.module').then((m) => m.EventsPageModule),
       },
+      {
+        path: 'messages',
+        loadChildren: () =>
+          import('../messages/messages.module').then((m) => m.MessagesPageModule),
+      },
 
     ],
   },

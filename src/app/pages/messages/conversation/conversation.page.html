@@ -1,0 +1,92 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{conversation?.subject}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content overflow-scroll="false">
+
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <div id="chat-parent">
+        <div id="chat-container">
+            <ion-row *ngFor="let chat of messages" class="full ">
+                <ion-col class="chat-row" [ngClass]="{ 'reverse': chat.isUser}">
+                    <div class="avatar-parent">
+                        <div class="avatar-border"></div>
+                        <img [src]="chat.profileImageUrl" class="avatar">
+                    </div>
+                    <div [ngClass]="{ 'name-row-parent-right': chat.isUser,'name-row-parent-left': !chat.isUser}">
+                        <div class="" [ngClass]="{ 'name-row-right': chat.isUser,'name-row-left': !chat.isUser}">
+                            {{chat.profile}}, {{chat.enteredText}}
+                        </div>
+                        <div class="" [ngClass]="{ 'message-row-right': chat.isUser,'message-row-left': !chat.isUser}">
+                            <ion-text class="text">{{chat.message}}</ion-text>
+                        </div>
+                    </div>
+                </ion-col>
+            </ion-row>
+
+            <ion-item-sliding *ngIf="reply">
+                <ion-item-options side="start">
+                    <ion-item-option color="danger">
+                        <ion-icon name="trash-bin-outline" size="large"></ion-icon>
+                    </ion-item-option>
+                </ion-item-options>
+
+                <ion-item lines="none">
+                    <ion-grid class="ion-no-padding">
+                        <ion-row class="full">
+                            <ion-col class="chat-row reverse">
+                                <div class="avatar-parent">
+                                    <div class="avatar-border"></div>
+                                    <img [src]="user.userImageUrl" class="avatar">
+                                </div>
+                                <div [ngClass]="{ 'name-row-parent-right': true,'name-row-parent-left': false}">
+                                    <div class="" [ngClass]="{ 'name-row-right': true,'name-row-left': false}">
+                                        {{user.userName}}, <ion-note color="danger">failed</ion-note>
+                                    </div>
+                                    <div class="" [ngClass]="{ 'message-row-right': true,'message-row-left': false}">
+                                        <ion-text class="text">{{reply.message}}</ion-text>
+                                    </div>
+                                </div>
+                            </ion-col>
+                            <ion-col size="auto" class="ion-align-self-center">
+                                <ion-spinner name="crescent" *ngIf="isBusy.sending"></ion-spinner>
+                                <ion-icon *ngIf="!isBusy.sending" size="large" name="reload-circle-outline"
+                                    (click)="replyToMessage(reply.message)"></ion-icon>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-item>
+            </ion-item-sliding>
+        </div>
+    </div>
+
+</ion-content>
+<ion-footer class="ion-no-border">
+
+    <ion-toolbar>
+        <ion-row>
+            <ion-col>
+                <ion-textarea auto-grow placeholder="Type your message" [(ngModel)]="message" rows="1"
+                    [disabled]="reply?.message?.trim().length"
+                    style="border-radius: 10px; padding-left: 10px;  background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.07)">
+                </ion-textarea>
+            </ion-col>
+            <ion-col size="auto" class="ion-align-self-center">
+                <ion-buttons>
+                    <ion-button (mousedown)="replyToMessage(message); $event.preventDefault()"
+                        [disabled]="reply?.message?.trim() || !message?.trim()">
+                        <ion-icon slot="icon-only" name="arrow-up-circle"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-footer>

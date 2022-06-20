@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>New Message</ion-title>
+    </ion-toolbar>
+
+    <ion-toolbar class="ion-padding-top">
+        <ion-searchbar searchIcon="person-outline" placeholder="Send message to" type="text" [value]="user?.title"
+            (ionInput)="search($event)">
+        </ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content overflow-scroll="true">
+    <ion-list *ngFor="let user of people" lines="full">
+        <ion-item (click)="selectUser(user)">
+            <ion-avatar slot="start">
+                <img [src]="user.imageUrl">
+            </ion-avatar>
+            <ion-label>{{user.title}}</ion-label>
+            <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+        </ion-item>
+    </ion-list>
+</ion-content>
+<ion-footer class="ion-no-border">
+    <ion-toolbar>
+        <ion-row>
+            <ion-col>
+                <ion-textarea auto-grow placeholder="Subject" [(ngModel)]="subject" rows="1"
+                    style="border-radius: 10px; padding-left: 10px; background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.07)">
+                </ion-textarea>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-textarea auto-grow placeholder="Type your message" [(ngModel)]="message" rows="2"
+                    style="border-radius: 10px; padding-left: 10px; background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.07)">
+                </ion-textarea>
+            </ion-col>
+
+            <ion-col size="auto" class="ion-align-self-center">
+                <ion-buttons>
+                    <ion-button (click)="sendMessage()" [disabled]="!message?.trim()">
+                        <ion-icon slot="icon-only" name="arrow-up-circle"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,9 @@
+<ion-item lines="none" class="w-full" (click)="goTo(blog)" [color]="color">
+    <ion-avatar slot="start">
+        <ion-img [src]="message?.profileImageUrl"></ion-img>
+    </ion-avatar>
+    <ion-label>
+        <h5>{{ message?.profile }}</h5>
+        <p>{{ message?.lastMessage }}</p>
+    </ion-label>
+</ion-item>

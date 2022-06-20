@@ -1,0 +1,47 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Messages</ion-title>
+        <ion-buttons slot="end" *ngIf="!(user?.isGuest | booleanize)">
+            <ion-button (click)="newMessage()">
+                <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-refresher slot="fixed" [disabled]="false" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-grid class="h-100 ion-padding-horizontal" *ngIf="user?.isGuest | booleanize">
+        <ion-row class="h-100">
+            <ion-col size="12" class="ion-text-center">
+            </ion-col>
+            <ion-col size="12" class="ion-text-center">
+                <p>Once you are signed in you can send and receive messages</p>
+                <ion-button (click)="openLogin()" color="yellow" strong>
+                    Sign in to get started!
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-list lines="full" *ngIf="!(user?.isGuest | booleanize)" [@fadeIn]>
+        <ion-list-header>
+            Recent Conversations
+        </ion-list-header>
+
+        <ion-item *ngFor="let item of conversations" button (click)="openMessage(item.id)">
+            <ion-avatar slot="start">
+                <img [src]="item.profileImageUrl">
+            </ion-avatar>
+            <ion-label>
+                <h3>{{item.profile}}</h3>
+                <h2>{{item.subject}}</h2>
+                <p>{{item.repliedText}}</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
+</ion-content>

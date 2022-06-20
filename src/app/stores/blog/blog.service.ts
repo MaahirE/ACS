@@ -12,6 +12,7 @@ export class BlogService {
                 format: 'json',
             })
             .then((result) => {
+                console.log(result);
                 if (result[0]?.objectList?.length > 0) {
                     this.blogStore.upsertMany(result[0].objectList);
                     this.blogStore.remove(
