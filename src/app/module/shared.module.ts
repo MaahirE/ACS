@@ -4,16 +4,16 @@ import { CommonModule } from '@angular/common';
 // import { ProfileComponent } from 'src/app/components/account/profile/profile.component';
 // import { InvitesComponent } from 'src/app/components/account/invites/invites.component';
 // import { ActivityComponent } from 'src/app/components/account/activity/activity.component';
-// import { PhotoGalleryComponent } from 'src/app/components/gallery/gallery.component';
+import { PhotoGalleryComponent } from 'src/app/components/gallery/gallery.component';
 
 import { GalleryModule } from '@ngx-gallery/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { LeafletMarkerClusterModule } from '@asymmetrik/ngx-leaflet-markercluster';
 // import { MapComponent } from 'src/app/components/map/map.component';
 // import { ReactiveFormsModule } from '@angular/forms';
-// import { IssueListComponent } from 'src/app/components/issue-list/issue-list.component';
-// import { MemberListComponent } from 'src/app/components/member-list/member-list.component';
-// import { StatusListComponent } from 'src/app/components/status-list/status-list.component';
+import { GroupEventComponent } from 'src/app/components/group-events/group-events.component';
+import { MemberListComponent } from 'src/app/components/member-list/member-list.component';
+import { StatusListComponent } from 'src/app/components/status-list/status-list.component';
 import { BooleanizePipe } from 'src/app/utils/booleanize.pipe';
 // import { SwiperModule } from 'swiper/angular';
 // import { LightboxModule } from 'ngx-lightbox';
@@ -38,11 +38,11 @@ import { SwiperModule } from 'swiper/angular';
         // ProfileComponent, 
         // InvitesComponent, 
         // ActivityComponent,
-        // PhotoGalleryComponent,
+        PhotoGalleryComponent,
         // MapComponent,
-        // IssueListComponent,
-        // MemberListComponent,
-        // StatusListComponent, 
+        GroupEventComponent,
+        MemberListComponent,
+        StatusListComponent,
         BooleanizePipe,
         BlogItemComponent,
         // DiscoverGridComponent,
@@ -72,12 +72,12 @@ import { SwiperModule } from 'swiper/angular';
         // ProfileComponent, 
         // InvitesComponent, 
         // ActivityComponent,
-        // PhotoGalleryComponent,
+        PhotoGalleryComponent,
         // CalendarModule,
         // MapComponent,
-        // IssueListComponent,
-        // MemberListComponent,
-        // StatusListComponent,
+        GroupEventComponent,
+        MemberListComponent,
+        StatusListComponent,
         BooleanizePipe,
         BlogItemComponent,
         // DiscoverGridComponent,

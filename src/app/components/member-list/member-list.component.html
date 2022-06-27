@@ -1,0 +1,19 @@
+<ion-list lines="full">
+    <ion-item-group *ngFor="let role of roles">
+        <ion-item-divider sticky>
+            <ion-label>{{role}}</ion-label>
+        </ion-item-divider>
+        <ng-container *ngFor="let person of members">
+            <ion-item button *ngIf="person.role === role">
+                <ion-avatar slot="start">
+                    <ion-img [src]="person.imageUrl"></ion-img>
+                </ion-avatar>
+                <ion-label>
+                    <h4 class="ion-text-bold">{{person.name}}</h4>
+                </ion-label>
+                <ion-badge *ngIf="person.isOwner" slot="end">Founder</ion-badge>
+                <ion-badge *ngIf="person.isPending == 'true'" slot="end" color="warning">Pending</ion-badge>
+            </ion-item>
+        </ng-container>
+    </ion-item-group>
+</ion-list>

@@ -58,6 +58,20 @@ const routes: Routes = [
   {
     path: 'conversation',
     loadChildren: () => import('./pages/messages/conversation/conversation.module').then(m => m.ConversationPageModule)
+  },
+  {
+    path: 'profile-details',
+    loadChildren: () => import('./pages/profile-details/profile-details.module').then(m => m.ProfileDetailsPageModule)
+  },
+
+  {
+    path: 'fundraising',
+    loadChildren: () => import('./pages/fundraising/fundraising.module').then(m => m.FundraisingPageModule)
+  },
+
+  {
+    path: 'create-group',
+    loadChildren: () => import('./pages/create-group/create-group.module').then(m => m.CreateGroupPageModule)
   }
 
 ];

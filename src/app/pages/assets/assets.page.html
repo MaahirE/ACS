@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-button (click)="dismiss()">
+                <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title class="ion-text-capitalize">{{type}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list *ngIf="type === 'videos'">
+        <ion-item button *ngFor="let video of videos" (click)="openVideo(video)">
+            <ion-icon slot="start" name="videocam-outline"></ion-icon>
+            <ion-label>
+                <h3>{{video.title}}</h3>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
+    <ion-list *ngIf="type === 'documents'">
+        <ion-item button *ngFor="let document of documents" (click)="openDocument(document)">
+            <ion-icon slot="start" name="document-text-outline"></ion-icon>
+            <ion-label>
+                <h3>{{document.subject}}</h3>
+                <p>{{document.extension}} | {{document.relativeSize}}</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

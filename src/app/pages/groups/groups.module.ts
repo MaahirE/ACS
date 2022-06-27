@@ -2,18 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { EventsPageRoutingModule } from './events-routing.module';
+import { GroupsPageRoutingModule } from './groups-routing.module';
+import { GroupsPage } from './groups.page';
 import { SharedModule } from 'src/app/module/shared.module';
-import { EventsPage } from './events.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EventsPageRoutingModule,
-    SharedModule
+    GroupsPageRoutingModule, SharedModule
   ],
-  declarations: [EventsPage]
+  declarations: [GroupsPage]
 })
-export class EventsPageModule { }
+export class GroupsPageModule { }

@@ -1,0 +1,88 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{profile?.title}}</ion-title>
+        <ion-buttons slot="end" *ngIf="!(user?.isGuest| booleanize) && segment === 'issues'">
+            <ion-button (click)="createNewIssue()">
+                <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+
+    <ion-toolbar>
+        <ion-row class="w-100">
+            <ion-col size="12">
+                <ion-chip [disabled]="!documents" (click)="openAssets('documents')">
+                    <ion-icon name="document-text-outline"></ion-icon>
+                    <ion-label>{{documents}}</ion-label>
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                </ion-chip>
+                <ion-chip [disabled]="!videos" (click)="openAssets('videos')">
+                    <ion-icon name="videocam-outline"></ion-icon>
+                    <ion-label>{{videos}}</ion-label>
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                </ion-chip>
+            </ion-col>
+            <ion-col size="12" class="ion-no-padding">
+                <ion-segment [(ngModel)]="segment" (ionChange)="switchSegment($event.target.value)">
+                    <ion-segment-button *ngFor="let segment of segments" [value]="segment.value">
+                        <ion-label>{{segment?.title}}</ion-label>
+                    </ion-segment-button>
+                </ion-segment>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-grid class="h-100" *ngIf="isBusy.loading">
+        <ion-row class="h-100">
+            <ion-col class="flex ion-align-items-center ion-justify-content-center">
+                <ion-spinner></ion-spinner>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <div [ngSwitch]="segment">
+        <status-list *ngSwitchCase="'status'" [@fadeIn] [profile]="profile" (selectedStatus)="openBlog($event)">
+        </status-list>
+
+        <app-gallery *ngSwitchCase="'photos'" [@fadeIn] [profile]="profile"></app-gallery>
+
+        <issue-list *ngSwitchCase="'issues'" [@fadeIn] [profile]="profile"></issue-list>
+
+        <member-list *ngSwitchCase="'members'" [@fadeIn] [members]="profile.members"></member-list>
+        <ion-grid *ngSwitchCase="'wiki'" [@fadeIn]>
+            <ion-item lines="none">
+                <ion-thumbnail slot="start">
+                    <ion-img [src]="profile?.imageUrl"></ion-img>
+                </ion-thumbnail>
+                <ion-label>
+                    <h2>{{profile?.memberCount}}</h2>
+                    <h3>Followers</h3>
+                </ion-label>
+                <ion-chip slot="end" *ngIf="!(user?.isGuest | booleanize)"
+                    [color]="profile?.teamMemberId?'danger':'secondary'" (click)="membership()">
+                    <ion-label>{{profile?.teamMemberId? 'Unfollow':'Follow'}}</ion-label>
+                    <ion-icon [name]="profile?.teamMemberId?'close-circle-outline':'add-circle-outline'">
+                    </ion-icon>
+                </ion-chip>
+                <ion-chip color="secondary" *ngIf="user?.isGuest | booleanize" slot="end" (click)="signIn()">
+                    <ion-label>sign in to follow</ion-label>
+                    <ion-icon name="log-in-outline"></ion-icon>
+                </ion-chip>
+            </ion-item>
+            <ion-row *ngIf="profile?.wiki">
+                <ion-col size="12">
+                    <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(profile?.wiki[0]?.html)"></div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+</ion-content>

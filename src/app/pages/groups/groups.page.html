@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>My Groups</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content force-overscroll="false">
+  <ion-refresher slot="fixed" *ngIf="!(user?.isGuest | booleanize)" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-grid class="h-100" *ngIf="isBusy.loading">
+    <ion-row class="h-100">
+      <ion-col class="flex ion-align-items-center ion-justify-content-center">
+        <ion-spinner></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div *ngIf="!isBusy.loading">
+
+    <ion-grid class="h-100 ion-padding-horizontal" *ngIf="user?.isGuest| booleanize" [@fadeIn]>
+      <ion-row class="h-100">
+        <ion-col size="12" class="ion-text-center">
+          <p>Once you are signed in you can start your own group or join others.</p>
+        </ion-col>
+        <ion-col size="12" class="">
+          <ion-button expand="full" fill="clear" (click)="openModal()">
+            Sign in or register to get started!
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid *ngIf="!(user?.isGuest | booleanize)" [@stagger]>
+      <div class="ion-text-center">
+        <img src="assets/img/logo.png" width="90%" height="90%" class="m-auto" />
+      </div>
+      <ion-row>
+        <ion-col size-xs="4" size-md="3" size-lg="2" *ngFor="let group of groups" (click)="groupDetails(group)">
+          <div class="ion-no-margin ion-text-center">
+            <ion-card-header class="ion-no-padding">
+              <ion-icon *ngIf="group.teamMemberId" name="checkmark-circle" size="large" color="success"
+                style="position: absolute;right: 0; width: 24px;height: 24px;">
+              </ion-icon>
+              <img [src]="group?.image200Url" class="rounded-full w-2/3 block m-auto" />
+            </ion-card-header>
+            <ion-card-content class="ion-no-padding">
+              <small>{{group?.title}}</small>
+            </ion-card-content>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <div class="groupBtn">
+
+        <ion-button size="large" color="primary" (click)="goToCreateGroup()">Start a group</ion-button>
+
+      </div>
+    </ion-grid>
+  </div>
+</ion-content>

@@ -48,6 +48,7 @@
     "ionic-angular": "^3.9.10",
     "leaflet": "^1.8.0",
     "leaflet.markercluster": "^1.5.3",
+    "ng2-file-upload": "^1.4.0",
     "ngx-autosize": "^1.8.7",
     "ngx-lightbox": "^2.6.1",
     "postcss-cli": "^9.1.0",

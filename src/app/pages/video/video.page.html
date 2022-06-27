@@ -1,0 +1,17 @@
+<ion-header>
+    <ion-toolbar color="black">
+        <ion-buttons slot="start">
+            <ion-button (click)="dismiss()">
+                <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Video</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content color="black">
+    <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(frame)"></div>
+    <div class="ion-padding-horizontal">
+        <p>{{video.description}}</p>
+    </div>
+</ion-content>

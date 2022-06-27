@@ -11,7 +11,8 @@ import { AutosizeModule } from 'ngx-autosize';
     IonicModule,
     CommonModule,
     FormsModule,
-    TabsPageRoutingModule
+    TabsPageRoutingModule,
+    AutosizeModule
   ],
   declarations: [TabsPage]
 })

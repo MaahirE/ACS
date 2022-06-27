@@ -15,10 +15,10 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'tab2',
+        path: 'groups',
         loadChildren: () =>
-          import('../tab2/tab2.module').then(
-            (m) => m.Tab2PageModule
+          import('../groups/groups.module').then(
+            (m) => m.GroupsPageModule
           ),
       },
       {
@@ -30,6 +30,12 @@ const routes: Routes = [
         path: 'messages',
         loadChildren: () =>
           import('../messages/messages.module').then((m) => m.MessagesPageModule),
+      },
+
+      {
+        path: 'fundraising',
+        loadChildren: () =>
+          import('../fundraising/fundraising.module').then((m) => m.FundraisingPageModule),
       },
 
     ],
