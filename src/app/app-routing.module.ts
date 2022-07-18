@@ -72,7 +72,25 @@ const routes: Routes = [
   {
     path: 'create-group',
     loadChildren: () => import('./pages/create-group/create-group.module').then(m => m.CreateGroupPageModule)
-  }
+  },
+  {
+    path: 'group-info',
+    loadChildren: () => import('./pages/group-info/group-info.module').then(m => m.GroupInfoPageModule)
+  },
+  {
+    path: 'groups',
+    loadChildren: () =>
+      import('./pages/groups/groups.module').then(
+        (m) => m.GroupsPageModule
+      ),
+  },
+  {
+    path: 'search',
+    loadChildren: () =>
+      import('./pages/search/search.module').then(
+        (m) => m.SearchPageModule
+      ),
+  },
 
 ];
 

@@ -7,7 +7,15 @@ const routes: Routes = [
     {
         path: '',
         component: CreateGroupPage
-    }
+    },
+    {
+        path: 'groups',
+        loadChildren: () =>
+            import('../groups/groups.module').then(
+                (m) => m.GroupsPageModule
+            ),
+    },
+
 ];
 
 @NgModule({

@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-toolbar color="secondary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{group.title}}</ion-title>
+        <ion-button (click)="dismiss()">
+            <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
+        </ion-button>
+    </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+
+    <ion-item lines="none">
+        <ion-avatar slot="start">
+            <ion-img [src]="group?.imageUrl"></ion-img>
+        </ion-avatar>
+        <ion-label>
+            <h1 class="!font-bold">{{followers?.count}}</h1>
+            <p>Followers</p>
+        </ion-label>
+        <ion-chip slot="end" *ngIf="!(user?.isGuest | booleanize)" [color]="group?.teamMemberId?'danger':'secondary'"
+            (click)="membership()">
+            <ion-label>{{group?.teamMemberId? 'Unfollow':'Follow'}}</ion-label>
+            <ion-icon [name]="profile?.teamMemberId?'close-circle-outline':'add-circle-outline'">
+            </ion-icon>
+        </ion-chip>
+    </ion-item>
+
+    <div class="mx-2" *ngIf="wiki?.html" [innerHTML]="sanitizer.bypassSecurityTrustHtml(wiki?.html)"></div>
+
+</ion-content>

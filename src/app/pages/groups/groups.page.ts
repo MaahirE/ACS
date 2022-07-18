@@ -69,7 +69,7 @@ export class GroupsPage implements OnInit {
   }
 
   getGroups() {
-    return this.profileService.getProfileList({ category: 'groups', items: '200', view: 'mine' });
+    return this.profileService.getProfileList({ category: 'groups', view: 'mine' });
   }
 
   groupDetails(profile) {
@@ -88,6 +88,10 @@ export class GroupsPage implements OnInit {
 
   goToCreateGroup() {
     this.navCtrl.navigateForward('create-group')
+  }
+
+  goToSearch() {
+    this.navCtrl.navigateForward('search')
   }
 
 }

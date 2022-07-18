@@ -19,7 +19,6 @@ export class ProfileService {
             console.log(result);
             return result[0].objectList;
         }).finally(() => {
-
             this.profileStore.setLoading(false);
         });
     }
@@ -38,7 +37,7 @@ export class ProfileService {
         this.profileStore.setLoading(true);
         return await this.http.request('GET', 'wiki', { profile: profile.uniqueId }).then(result => {
             this.profileStore.update(profile.id, { wiki: result[0].objectList });
-            return result[0].status;
+            return result[0].objectList[0];// returned in the Api
         }).finally(() => {
             this.profileStore.setLoading(false);
         });
@@ -57,6 +56,22 @@ export class ProfileService {
         }).finally(() => {
             this.profileStore.setLoading(false);
         });
+    }
+
+    async createGroup(params: any) {
+        console.log(params);
+        this.profileStore.setLoading(true);
+        return await this.http
+            .request('POST', 'profile', {
+                ...params,
+                category: 'Groups'
+            })
+            .then(
+                (result) => result[0].status.code === 0 && result[0].status.count === 1
+            )
+            .finally(() =>
+                this.profileStore.setLoading(false)
+            );
     }
 
 

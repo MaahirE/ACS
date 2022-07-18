@@ -46,8 +46,10 @@
 //     color: black;
 // }
 
-ion-input {
-    box-sizing: 1000px;
+ion-textarea {
     height: 100px;
-    position: static;
+    position: relative;
+    top: 5px;
+    width: 100%;
+    background-color: rgb(231, 231, 231);
 }

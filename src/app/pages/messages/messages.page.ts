@@ -3,7 +3,7 @@ import { HttpService } from 'src/app/services/http.service';
 import { NavController, IonRouterOutlet } from '@ionic/angular';
 import { SharedService } from 'src/app/services/shared.services';
 import { LoginPage } from '../login/login.page';
-import { UserQuery } from 'src/app/stores/user';
+import { UserQuery, UserService } from 'src/app/stores/user';
 import { MessagesQuery, MessagesService, MessagesStore } from 'src/app/stores/messages';
 import { Animations } from 'src/app/utils/animations';
 
@@ -28,7 +28,8 @@ export class MessagesPage implements OnInit {
         private messagesService: MessagesService,
         private messagesStore: MessagesStore,
         public sharedService: SharedService,
-        private routerOutlet: IonRouterOutlet,) {
+        private routerOutlet: IonRouterOutlet,
+        private userService: UserService,) {
         this.userQuery.select('data').subscribe(user => {
             this.user = user
             this.getConversationList()
@@ -40,6 +41,7 @@ export class MessagesPage implements OnInit {
     }
 
     ngOnInit() {
+        this.messagesService.notifications();
     }
 
     doRefresh(event) {

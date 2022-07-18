@@ -57,4 +57,16 @@ export class MessagesService {
                 console.log(error);
             });
     }
+
+    async notifications() {
+        const payload = {
+            profile: "khanya-gope",
+            title: "Testing notifications in Zireplus",
+            pushNotification: true,
+        }
+        return await this.httpService.request('POST', 'notification', payload).then(result => {
+            console.log(result)
+            return result[0];
+        })
+    }
 }

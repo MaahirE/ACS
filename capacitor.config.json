@@ -1,6 +1,15 @@
 {
-	"appId": "io.ionic.starter",
+	"appId": "com.connectmobiles24.ACSVILLAGE",
 	"appName": "ACS",
 	"webDir": "www",
-	"bundledWebRuntime": false
+	"bundledWebRuntime": false,
+	"plugins": {
+		"PushNotifications": {
+			"presentationOptions": [
+				"badge",
+				"sound",
+				"alert"
+			]
+		}
+	}
 }

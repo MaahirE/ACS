@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Browser } from '@capacitor/browser';
 import { NavController, ToastController } from '@ionic/angular';
 import { UserQuery, UserService } from 'src/app/stores/user';
+import { FcmService } from 'src/app/services/fcm.service';
 
 @Component({
     selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginPage implements OnInit {
         private userService: UserService,
         public userQuery: UserQuery,
         private navCtrl: NavController,
-        private toastCtrl: ToastController
+        private toastCtrl: ToastController,
+        private fcmService: FcmService
     ) { }
 
     ngOnInit() {
@@ -45,8 +47,10 @@ export class LoginPage implements OnInit {
             return;
         }
 
+        this.fcmService.initPush();
+
         await this.userService
-            .login(this.f.email.value.trim(), this.f.password.value)
+            .login(this.f.email.value.trim(), this.f.password.value, this.fcmService.deviceId)
             .then(async (success) => {
                 if (success) {
                     this.navCtrl.navigateBack('');

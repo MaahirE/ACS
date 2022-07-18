@@ -16,14 +16,14 @@ export class UserService {
         this.userStore.setLoading(false);
     }
 
-    async login(username, password) {
+    async login(username, password, deviceId) {
         this.userStore.setLoading(true);
         const ha1 = Md5.hashStr(
             `${username}:${environment.realm}:${password}`
         ).toString();
         this.userStore.update({ username, ha1 });
         return await this.http
-            .request('GET', 'site', { format: 'json' })
+            .request('GET', 'site', { format: 'json', deviceId: deviceId })
             .then((result) => {
                 const { status, objectList } = result[0];
                 if (status.code === 0) {

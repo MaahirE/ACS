@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { BlogQuery, BlogService } from 'src/app/stores/blog';
 import { UserQuery } from 'src/app/stores/user';
+import { FcmService } from 'src/app/services/fcm.service';
+import { init } from '@datorama/akita-ngdevtools';
+
 
 @Component({
   selector: 'app-blogs',
@@ -14,9 +17,13 @@ export class BlogsPage implements OnInit {
     public blogQuery: BlogQuery,
     private navCtrl: NavController,
     public userQuery: UserQuery,
+    private fcmService: FcmService,
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+
+    this.fcmService.initPush();
+  }
 
   ionViewWillEnter() {
     this.blogService.getList();

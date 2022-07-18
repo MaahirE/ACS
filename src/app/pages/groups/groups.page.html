@@ -1,6 +1,11 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar color="primary">
     <ion-title>My Groups</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToSearch()">
+        <ion-icon name="search-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -8,7 +13,6 @@
   <ion-refresher slot="fixed" *ngIf="!(user?.isGuest | booleanize)" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-
   <ion-grid class="h-100" *ngIf="isBusy.loading">
     <ion-row class="h-100">
       <ion-col class="flex ion-align-items-center ion-justify-content-center">
@@ -17,7 +21,6 @@
     </ion-row>
   </ion-grid>
   <div *ngIf="!isBusy.loading">
-
     <ion-grid class="h-100 ion-padding-horizontal" *ngIf="user?.isGuest| booleanize" [@fadeIn]>
       <ion-row class="h-100">
         <ion-col size="12" class="ion-text-center">
@@ -42,7 +45,9 @@
               <ion-icon *ngIf="group.teamMemberId" name="checkmark-circle" size="large" color="success"
                 style="position: absolute;right: 0; width: 24px;height: 24px;">
               </ion-icon>
+
               <img [src]="group?.image200Url" class="rounded-full w-2/3 block m-auto" />
+
             </ion-card-header>
             <ion-card-content class="ion-no-padding">
               <small>{{group?.title}}</small>
@@ -52,9 +57,7 @@
       </ion-row>
 
       <div class="groupBtn">
-
-        <ion-button size="large" color="primary" (click)="goToCreateGroup()">Start a group</ion-button>
-
+        <ion-button size="large" color="primary" (click)="goToCreateGroup()">Create a group</ion-button>
       </div>
     </ion-grid>
   </div>

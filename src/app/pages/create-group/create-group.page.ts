@@ -7,7 +7,7 @@ import {
     Validators,
 } from '@angular/forms';
 import { NavController, ToastController } from '@ionic/angular';
-import { UserQuery, UserService } from 'src/app/stores/user';
+import { ProfileQuery, ProfileService } from 'src/app/stores/profile';
 
 @Component({
     selector: 'app-create-group',
@@ -19,21 +19,21 @@ export class CreateGroupPage implements OnInit {
 
     constructor(
         public formBuilder: FormBuilder,
-        private userService: UserService,
-        public userQuery: UserQuery,
+        private profileService: ProfileService,
+        public profileQuery: ProfileQuery,
         private navCtrl: NavController,
         private toastCtrl: ToastController
     ) { }
 
     ngOnInit() {
         this.createGroup = this.formBuilder.group({
-            groupName: [
+            title: [
                 '',
                 Validators.compose([Validators.maxLength(100), Validators.required]),
             ],
             description: [
                 '',
-                Validators.compose([Validators.maxLength(100), Validators.required]),
+                Validators.compose([Validators.maxLength(1000), Validators.required]),
             ],
 
         });
@@ -43,30 +43,41 @@ export class CreateGroupPage implements OnInit {
         return this.createGroup.controls;
     }
 
+
+
     async onSubmit() {
+        console.log("Create Groups");
         this.createGroup.markAllAsTouched();
 
         if (this.createGroup.invalid) {
+            const toast = await this.toastCtrl.create({
+                icon: 'close-circle-outline',
+                color: 'danger',
+                position: 'top',
+                message: 'Something weird happened, please try again',
+                duration: 3000,
+            });
+
+            toast.present();
             return;
         }
-
-        await this.userService
-            .signup(this.createGroup.getRawValue())
+        console.log("Reached this part");
+        this.profileService
+            .createGroup(this.createGroup.getRawValue())
             .then(async (success) => {
                 const toast = await this.toastCtrl.create({
-                    icon: success ? 'checkmark-circle-outline' : 'close-circle-outline',
-                    color: success ? 'success' : 'danger',
+                    icon: 'checkmark-circle-outline',
+                    color: 'success',
                     position: 'top',
-                    message: success
-                        ? 'Registration successful, a link was sent to the provided email address for verification'
-                        : 'Something weird happened, please try again',
+                    message: 'Your group has been created successfully'
+                    ,
                     duration: 3000,
                 });
 
                 toast.present();
 
                 if (success) {
-                    this.navCtrl.navigateBack('');
+                    this.navCtrl.navigateBack('groups');
                 }
             });
     }

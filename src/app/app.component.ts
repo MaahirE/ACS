@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { Platform } from '@ionic/angular';
 import { UserQuery, UserService } from './stores/user';
+import { FcmService } from './services/fcm.service';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,8 @@ export class AppComponent {
   constructor(
     public userQuery: UserQuery,
     private userService: UserService,
-    private platform: Platform
+    private platform: Platform,
+    private fcmService: FcmService
   ) { }
 
   async initApp() {
@@ -37,10 +39,16 @@ export class AppComponent {
       if (this.platform.is('capacitor')) {
         SplashScreen.hide({ fadeOutDuration: 1000 });
       }
+
+      this.fcmService.initPush();
     });
   }
+
+
 
   logout() {
     this.userService.logout();
   }
+
+
 }
